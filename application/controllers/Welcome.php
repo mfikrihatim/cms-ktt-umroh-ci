@@ -198,16 +198,37 @@ class Welcome extends CI_Controller
 			$data['detail']['username'] = $tampil->username;
 			$data['detail']['password'] = $tampil->password;
 			$data['detail']['alamat'] = $tampil->alamat;
+			$data['detail']['kota'] = $tampil->kota;
+			$data['detail']['kodepos'] = $tampil->kodepos;
+			$data['detail']['pekerjaan'] = $tampil->pekerjaan;
 			$data['detail']['no_telp_hp'] = $tampil->no_telp_hp;
 			$data['detail']['email'] = $tampil->email;
 			$data['detail']['kota_lahir'] = $tampil->kota_lahir;
 			$data['detail']['tgl_lahir'] = $tampil->tgl_lahir;
 			$data['detail']['jk'] = $tampil->jk;
 			$data['detail']['foto'] = $tampil->foto;
+			$data['detail']['ahli_waris'] = $tampil->ahli_waris;
+			$data['detail']['hubungan_ahli_waris'] = $tampil->hubungan_ahli_waris;
+			$data['detail']['ibu_kandung'] = $tampil->ibu_kandung;
+			$data['detail']['npwp'] = $tampil->npwp;
+			$data['detail']['no_paspor'] = $tampil->no_paspor;
+			$data['detail']['tgl_dikeluarkan_pas'] = $tampil->tgl_dikeluarkan_pas;
+			$data['detail']['tgl_expired_pas'] = $tampil->tgl_expired_pas;
+			$data['detail']['tempat_dikeluarkan_pas'] = $tampil->tempat_dikeluarkan_pas;
+			$data['detail']['pernah_umroh'] = $tampil->pernah_umroh;
+			$data['detail']['kali_umroh'] = $tampil->kali_umroh;
+			$data['detail']['tgl_terakhir_berangkat'] = $tampil->tgl_terakhir_berangkat;
+			$data['detail']['tgl_rencana_umroh'] = $tampil->tgl_rencana_umroh;
+			$data['detail']['paket'] = $tampil->paket;
+			$data['detail']['nama_mahram'] = $tampil->nama_mahram;
+			$data['detail']['hubungan_mahram'] = $tampil->hubungan_mahram;
 			$data['detail']['nama_bank'] = $tampil->nama_bank;
 			$data['detail']['nomor_rekening'] = $tampil->nomor_rekening;
 			$data['detail']['atas_nama'] = $tampil->atas_nama;
 			$data['detail']['pin'] = $tampil->pin;
+			$data['detail']['nama_referensi'] = $tampil->nama_referensi;
+			$data['detail']['nohp_referensi'] = $tampil->nohp_referensi;
+			$data['detail']['id_referensi'] = $tampil->id_referensi;
 			$data['detail']['id_upline'] = $tampil->id_upline;
 			$data['detail']['posisi'] = $tampil->posisi;
 			$data['detail']['level'] = $tampil->level;
@@ -239,6 +260,8 @@ class Welcome extends CI_Controller
 
 
 		$data['content'] = 'VFormAddMember';
+		$data['no_voucher'] = $this->MSudi->GetData('tb_voucher');
+		$data['id'] = $this->MSudi->GetData('tb_voucher');
 		$this->load->view('welcome_message', $data);
 	}
 
@@ -274,6 +297,30 @@ class Welcome extends CI_Controller
 		$add['deleted_by'] = Null;
 		$add['deleted_at'] = Null;
 		$add['is_active'] = 1;
+		$add['kota'] = $this->input->post('kota');
+		$add['kodepos'] = $this->input->post('kodepos');
+		$add['pekerjaan'] = $this->input->post('pekerjaan');
+		$add['ahli_waris'] = $this->input->post('ahli_waris');
+		$add['hubungan_ahli_waris'] = $this->input->post('hubungan_ahli_waris');
+		$add['ibu_kandung'] = $this->input->post('ibu_kandung');
+		$add['npwp'] = $this->input->post('npwp');
+		$add['no_paspor'] = $this->input->post('no_paspor');
+		$add['tgl_dikeluarkan_pas'] = $this->input->post('tgl_dikeluarkan_pas');
+		$add['tgl_expired_pas'] = $this->input->post('tgl_expired_pas');
+		$add['tempat_dikeluarkan_pas'] = $this->input->post('tempat_dikeluarkan_pas');
+		$add['pernah_umroh'] = $this->input->post('pernah_umroh');
+		$add['kali_umroh'] = $this->input->post('kali_umroh');
+		$add['tgl_terakhir_berangkat'] = $this->input->post('tgl_terakhir_berangkat');
+		$add['tgl_rencana_umroh'] = $this->input->post('tgl_rencana_umroh');
+		$add['paket'] = $this->input->post('paket');
+		$add['nama_mahram'] = $this->input->post('nama_mahram');
+		$add['hubungan_mahram'] = $this->input->post('hubungan_mahram');
+		$add['nama_referensi'] = $this->input->post('nama_referensi');
+		$add['nohp_referensi'] = $this->input->post('nohp_referensi');
+		$add['id_referensi'] = $this->input->post('id_referensi');
+	
+
+
 		$config['upload_path'] = './upload/Member';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -321,6 +368,27 @@ class Welcome extends CI_Controller
 		$update['updated_by'] = $data['nama'];
 		$update['updated_at'] = date("Y-m-d H:i:s");
 		$update['is_active'] = 1;
+		$update['kota'] = $this->input->post('kota');
+		$update['kodepos'] = $this->input->post('kodepos');
+		$update['pekerjaan'] = $this->input->post('pekerjaan');
+		$update['ahli_waris'] = $this->input->post('ahli_waris');
+		$update['hubungan_ahli_waris'] = $this->input->post('hubungan_ahli_waris');
+		$update['ibu_kandung'] = $this->input->post('ibu_kandung');
+		$update['npwp'] = $this->input->post('npwp');
+		$update['no_paspor'] = $this->input->post('no_paspor');
+		$update['tgl_dikeluarkan_pas'] = $this->input->post('tgl_dikeluarkan_pas');
+		$update['tgl_expired_pas'] = $this->input->post('tgl_expired_pas');
+		$update['tempat_dikeluarkan_pas'] = $this->input->post('tempat_dikeluarkan_pas');
+		$update['pernah_umroh'] = $this->input->post('pernah_umroh');
+		$update['kali_umroh'] = $this->input->post('kali_umroh');
+		$update['tgl_terakhir_berangkat'] = $this->input->post('tgl_terakhir_berangkat');
+		$update['tgl_rencana_umroh'] = $this->input->post('tgl_rencana_umroh');
+		$update['paket'] = $this->input->post('paket');
+		$update['nama_mahram'] = $this->input->post('nama_mahram');
+		$update['hubungan_mahram'] = $this->input->post('hubungan_mahram');
+		$update['nama_referensi'] = $this->input->post('nama_referensi');
+		$update['nohp_referensi'] = $this->input->post('nohp_referensi');
+		$update['id_referensi'] = $this->input->post('id_referensi');
 		$config['upload_path'] = './upload/Member';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 
