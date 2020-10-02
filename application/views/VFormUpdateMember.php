@@ -93,6 +93,104 @@
         <input type="number" class="form-control" name="id_number" value="<?php echo $detail['id_member']; ?>" placeholder="Masukan Nama Posisi">
     </div>
     <div class="form-group">
+             <label>Kota</label>
+             <input type="text" class="form-control" name="kota" value="<?php echo $detail['kota']; ?>"placeholder="Masukan Kota">
+         </div>
+         <div class="form-group">
+             <label>Kode Pos</label>
+             <input type="number" class="form-control" name="kodepos" value="<?php echo $detail['kodepos']; ?>"placeholder="Masukan Kode Pos">
+         </div>
+         <div class="form-group">
+             <label>Pekerjaan</label>
+             <input type="text" class="form-control" name="pekerjaan" value="<?php echo $detail['pekerjaan']; ?>"placeholder="Masukan Pekerjaan">
+         </div>
+         <div class="form-group">
+             <label>Ahli Waris</label>
+             <input type="text" class="form-control" name="ahli_waris" value="<?php echo $detail['ahli_waris']; ?>" placeholder="Masukan Nama Ahli Waris">
+         </div>
+         <div class="form-group">
+             <label>Hubungan Ahli Waris</label>
+             <input type="text" class="form-control" name="hubungan_ahli_waris" value="<?php echo $detail['hubungan_ahli_waris']; ?>"placeholder="Hubungan Ahli Waris">
+         </div>
+         <div class="form-group">
+             <label>Ibu Kandung</label>
+             <input type="text" class="form-control" name="ibu_kandung" value="<?php echo $detail['ibu_kandung']; ?>" placeholder="Masukan Nama Ibu Kandung">
+         </div>
+         <div class="form-group">
+             <label>NPWP</label>
+             <input type="number" class="form-control" name="npwp" value="<?php echo $detail['npwp']; ?>" placeholder="Masukan NPWP">
+         </div>
+         <div class="form-group">
+             <label>No Paspor</label>
+             <input type="number" class="form-control" name="no_paspor" value="<?php echo $detail['no_paspor']; ?>" placeholder="Masukan No PASPOR">
+         </div>
+         <div class="form-group">
+             <label>Tanggal Dikeluarkan Paspor</label>
+             <input type="date" class="form-control" name="tgl_dikeluarkan_pas" value="<?php echo $detail['tgl_dikeluarkan_pas']; ?>">
+         </div>
+         <div class="form-group">
+             <label>Tanggal Expired Paspor</label>
+             <input type="date" class="form-control" name="tgl_expired_pas" value="<?php echo $detail['tgl_expired_pas']; ?>">
+         </div>
+         <div class="form-group">
+             <label>Tempat Paspor Di keluarkan</label>
+             <input type="text" class="form-control" name="tempat_dikeluarkan_pas"  value="<?php echo $detail['tempat_dikeluarkan_pas']; ?> " placeholder="Masukan Tempat Paspor Dikeluarkan">
+         </div>
+         <div class="form-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="pernah_umroh" id="pernah_umroh" value="0" <?php if($detail['pernah_umroh']=='0') echo 'checked'?>>
+                      Tidak Pernah
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="pernah_umroh" id="pernah_umroh" value="1"<?php if($detail['pernah_umroh']=='1') echo 'checked'?>>
+                      Pernah
+                    </label>
+                  </div>
+                </div>
+            
+         <div class="form-group">
+             <label>Kali Umroh</label>
+             <input type="number" class="form-control" name="kali_umroh" placeholder="Berapa Kali Umroh" value="<?php echo $detail['kali_umroh']; ?>">
+         </div>
+         <div class="form-group">
+             <label>Tanggal Terakhir Berangkat</label>
+             <input type="date" class="form-control" name="tgl_terakhir_berangkat"value="<?php echo $detail['tgl_terakhir_berangkat']; ?>" >
+         </div>
+         <div class="form-group">
+             <label>Tanggal Rencana Umroh</label>
+             <input type="date" class="form-control" name="tgl_rencana_umroh" value="<?php echo $detail['tgl_rencana_umroh']; ?>">
+         </div>
+         <div class="form-group">
+             <label>Paket</label>
+             <input type="text" class="form-control" name="paket" placeholder="Masukan Paket" value="<?php echo $detail['paket']; ?>">
+         </div>
+         <div class="form-group">
+             <label>Nama Mahram</label>
+             <input type="text" class="form-control" name="nama_mahram" placeholder="Masukan Nama Mahram" value="<?php echo $detail['nama_mahram']; ?>">
+         </div>
+           <div class="form-group">
+             <label>Hubungan Mahram</label>
+             <input type="text" class="form-control" name="hubungan_mahram" placeholder="Masukan Hubungan Mahram" value="<?php echo $detail['hubungan_mahram']; ?>">
+         </div>
+
+         <div class="form-group">
+             <label>Nama Referensi</label>
+             <input type="text" class="form-control" name="nama_referensi" placeholder="Masukan Nama Referensi" value="<?php echo $detail['nama_referensi']; ?>">
+         </div>
+         <div class="form-group">
+             <label>No Telfon Referensi</label>
+             <input type="number" class="form-control" name="nohp_referensi" placeholder="Masukan No Telfon Referensi" value="<?php echo $detail['nohp_referensi']; ?>">
+         </div>
+         <div class="form-group">
+             <label>ID Referensi</label>
+             <input type="number" class="form-control" name="id_referensi" value="<?php echo $detail['id_referensi']; ?>" >
+         </div>
+
+
+    <div class="form-group">
         <td><img src="<?php echo base_url('./upload/Member/') . $detail['foto']; ?>" width="auto" height="100px"></td>
         <label for="exampleInputFile">Foto</label>
         <input type="file" name="userfile" />
