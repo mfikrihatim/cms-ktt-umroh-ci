@@ -49,6 +49,16 @@
 
 
     <form action="" method="post">
+    <div class="form-group">
+             <label>Pilih Akses</label>
+             <select class="form-control" id="level" name="level">
+                 <option selected disabled>Pilih</option>
+                  
+                   <option value="admin"> Admin</option>
+                   <option value="member"> Member</option>
+                 
+             </select>
+         </div>
       <div class="form-group has-feedback">
         <input type="text" name="username" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
