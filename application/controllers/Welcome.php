@@ -97,6 +97,76 @@ class Welcome extends CI_Controller
 	// 		}
 
 
+	public function DataLevelMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tbl_level_member', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['kd_level'] = $tampil->kd_level;
+			$data['detail']['nama_level'] = $tampil->nama_level;
+			$data['content'] = 'VFormUpdateLevelMember';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataLevelMember'] = $this->MSudi->GetDataWhere1('tbl_level_member', 'is_active', 1, 'id', 'asc')->result();
+			$data['content'] = 'VLevelMember';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+
+
+	public function VFormAddLevelMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddLevelMember';
+		$this->load->view('welcome_message', $data);
+	}
+	public function AddDataLevelMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$add['id'] = $this->input->post('id');
+		$add['kd_level'] = $this->input->post('kd_level');
+		$add['nama_level'] = $this->input->post('nama_level');
+		$add['is_active'] = 1;
+
+		$this->MSudi->AddData('tbl_level_member', $add);
+		redirect(site_url('Welcome/DataLevelMember'));
+	}
+
+	public function UpdateDataLevelMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$id = $this->input->post('id');
+		$update['kd_level'] = $this->input->post('kd_level');
+		$update['nama_level'] = $this->input->post('nama_level');
+		$this->MSudi->UpdateData('tbl_level_member', 'id', $id, $update);
+		redirect(site_url('Welcome/DataLevelMember'));
+	}
+
+
+	public function DeleteDataLevelMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$id = $this->uri->segment('3');
+		$update['is_active'] = 0;
+		// $update['deleted_by'] = $data['nama'];
+		// $update['deleted_at'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->UpdateData('tbl_level_member', 'id', $id, $update);
+		redirect(site_url('Welcome/DataLevelMember'));
+	}
+
+
 	public function DataAdmin()
 	{
 		$data['nama'] = $this->session->userdata('nama');
@@ -184,6 +254,9 @@ class Welcome extends CI_Controller
 		$this->MSudi->UpdateData('tb_admin', 'id', $id, $update);
 		redirect(site_url('Welcome/DataAdmin'));
 	}
+
+
+
 
 
 	public function DataMember()
@@ -318,7 +391,7 @@ class Welcome extends CI_Controller
 		$add['nama_referensi'] = $this->input->post('nama_referensi');
 		$add['nohp_referensi'] = $this->input->post('nohp_referensi');
 		$add['id_referensi'] = $this->input->post('id_referensi');
-	
+
 
 
 		$config['upload_path'] = './upload/Member';
@@ -417,6 +490,115 @@ class Welcome extends CI_Controller
 
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
 		redirect(site_url('Welcome/DataMember'));
+	}
+
+
+	public function DataVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tb_voucher', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['id_member_pemilik'] = $tampil->id_member_pemilik;
+			$data['detail']['id_member_digunakan'] = $tampil->id_member_digunakan;
+			$data['detail']['no_voucher'] = $tampil->no_voucher;
+			$data['detail']['status'] = $tampil->status;
+			$data['detail']['tgl_beli'] = $tampil->tgl_beli;
+			$data['detail']['tgl_digunakan'] = $tampil->tgl_digunakan;
+			$data['detail']['tgl_insert'] = $tampil->tgl_insert;
+			// $data['detail']['created_by'] = $tampil->created_by;
+			// $data['detail']['created_at'] = $tampil->created_at;
+			// $data['detail']['updated_by'] = $tampil->updated_by;
+			// $data['detail']['updated_at'] = $tampil->updated_at;
+			// $data['detail']['deleted_by'] = $tampil->deleted_by;
+			// $data['detail']['deleted_at'] = $tampil->deleted_at;
+			$data['content'] = 'VFormUpdateVoucher';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataVoucher'] = $this->MSudi->GetData('tb_voucher');
+			$data['content'] = 'VVoucher';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+
+
+	public function VFormAddVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddVoucher';
+		$data['member'] = $this->MSudi->GetData('tb_member');
+		$data['id'] = $this->MSudi->GetData('tb_member');
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function AddDataVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$add['id'] = $this->input->post('id');
+		$add['id_member_pemilik'] = $this->input->post('id_member_pemilik');
+		$add['id_member_digunakan'] = $this->input->post('id_member_digunakan');
+		$add['no_voucher'] = $this->input->post('no_voucher');
+		$add['status'] = $this->input->post('status');
+		$add['tgl_beli'] = $this->input->post('tgl_beli');
+		$add['tgl_digunakan'] = $this->input->post('tgl_digunakan');
+		$add['tgl_insert'] = date("Y-m-d H:i:s");
+		// $add['created_by'] = $data['nama'];
+		// $add['created_at'] = date("Y-m-d H:i:s");
+		// $add['updated_by'] = Null;
+		// $add['updated_at'] = Null;
+		// $add['deleted_by'] = Null;
+		// $add['deleted_at'] = Null;
+		$add['is_active'] = 1;
+		$this->MSudi->AddData('tb_voucher', $add);
+		redirect(site_url('Welcome/DataVoucher'));
+	}
+
+	public function UpdateDataVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$id = $this->input->post('id');
+
+		$update['id'] = $this->input->post('id');
+		$update['id_member_pemilik'] = $this->input->post('id_member_pemilik');
+		$update['id_member_digunakan'] = $this->input->post('id_member_digunakan');
+		$update['no_voucher'] = $this->input->post('no_voucher');
+		$update['status'] = $this->input->post('status');
+		$update['tgl_beli'] = $this->input->post('tgl_beli');
+		$update['tgl_digunakan'] = $this->input->post('tgl_digunakan');
+		$update['tgl_insert'] = date("Y-m-d H:i:s");
+		// $update['created_by'] = $data['nama'];
+		// $update['created_at'] = date("Y-m-d H:i:s");
+		// $update['updated_by'] = Null;
+		// $update['updated_at'] = Null;
+		// $update['deleted_by'] = Null;
+		// $update['deleted_at'] = Null;
+		$update['is_active'] = 1;
+		$this->MSudi->UpdateData('tb_voucher', 'id', $id, $update);
+		redirect(site_url('Welcome/DataVoucher'));
+	}
+
+
+	public function DeleteDataVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$id = $this->uri->segment('3');
+		$update['is_active'] = 0;
+		$update['deleted_by'] = $data['nama'];
+		$update['deleted_at'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->UpdateData('tb_voucher', 'id', $id, $update);
+		redirect(site_url('Welcome/DataVoucher'));
 	}
 
 	public function Logout()
