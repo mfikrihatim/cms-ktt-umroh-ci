@@ -160,6 +160,16 @@
             </a>
           </li>
           <li>
+            <a href="<?php echo site_url('Welcome/DataVoucher'); ?>">
+              <i class="fa fa-user"> <span>Data Voucher</i></span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo site_url('Welcome/DataLevelMember'); ?>">
+              <i class="fa fa-user"> <span>Data Level Member</i></span>
+            </a>
+          </li>
+          <li>
             <a href="<?php echo site_url('Welcome/Logout'); ?>">
               <i class="fa  fa-arrow-left"> <span>Logout</i></span>
             </a>
