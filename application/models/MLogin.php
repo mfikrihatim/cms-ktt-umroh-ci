@@ -4,11 +4,18 @@
 		parent::__construct();
 		}
 
-		function GoLogin($username,$password){
+		function GoLogin($username,$password,$level){
 			$this->db->select('*');
-			$this->db->from('tb_admin');
-			$this->db->where('username', $username);
-			$this->db->where('password', $password);
+			if($level == "member"){
+				$this->db->from('tb_member');
+				$this->db->where('username', $username);
+				$this->db->where('password', $password);
+			}else{
+				$this->db->from('tb_admin');
+				$this->db->where('username', $username);
+				$this->db->where('password', $password);
+			}
+		
 			$query = $this->db->get();
 			if($query -> num_rows() == 1){
 				$row = $query->row();
@@ -18,7 +25,9 @@
 				$this->session->set_userdata('nama', $row->nama);
     			return $row->id;
 			}else{
+				
 				return false;
+				
 			}
 		}
 
