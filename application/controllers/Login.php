@@ -12,7 +12,8 @@ class Login extends CI_Controller {
 		if (isset($_POST['login'])){
 				$username = $_POST['username'];
 				$password = $_POST['password'];
-				$notif = $this->MLogin->GoLogin($username, $password);
+				$level = $_POST['level'];
+				$notif = $this->MLogin->GoLogin($username, $password,$level);
 				if($notif){
 					$this->load->library('session');
 					$this->session->set_userdata('Login','OnLogin');
