@@ -4,9 +4,9 @@
             <div class="box-header">
                 <h2 class="box-title">Data Member</h2>
                 <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddMember'); ?>">
-              <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
-            </a></h3>
+                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddMember'); ?>">
+                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
+                        </a></h3>
 
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
