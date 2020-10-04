@@ -290,7 +290,13 @@ class Welcome extends CI_Controller
 			$data['detail']['tempat_dikeluarkan_pas'] = $tampil->tempat_dikeluarkan_pas;
 			$data['detail']['pernah_umroh'] = $tampil->pernah_umroh;
 			$data['detail']['kali_umroh'] = $tampil->kali_umroh;
-			$data['detail']['tgl_terakhir_berangkat'] = $tampil->tgl_terakhir_berangkat;
+			$convertTgTerakhirBerangkat = date_create($tampil->tgl_terakhir_berangkat, timezone_open('Europe/London'));
+			date_timezone_set($convertTgTerakhirBerangkat, timezone_open('Asia/Bangkok'));
+
+
+			$tgTerakhirBerangkat = $convertTgTerakhirBerangkat->format('d/m/Y');
+
+			$data['detail']['tgl_terakhir_berangkat'] = $tgTerakhirBerangkat;
 			$data['detail']['tgl_rencana_umroh'] = $tampil->tgl_rencana_umroh;
 			$data['detail']['paket'] = $tampil->paket;
 			$data['detail']['nama_mahram'] = $tampil->nama_mahram;
@@ -500,6 +506,7 @@ class Welcome extends CI_Controller
 			$id = $this->uri->segment(3);
 			$tampil = $this->MSudi->GetDataWhere('tb_voucher', 'id', $id)->row();
 			$data['detail']['id'] = $tampil->id;
+			$data['detail']['id_admin'] = $tampil->id_admin;
 			$data['detail']['id_member_pemilik'] = $tampil->id_member_pemilik;
 			$data['detail']['id_member_digunakan'] = $tampil->id_member_digunakan;
 			$data['detail']['no_voucher'] = $tampil->no_voucher;
@@ -533,30 +540,33 @@ class Welcome extends CI_Controller
 
 		$data['content'] = 'VFormAddVoucher';
 		$data['member'] = $this->MSudi->GetData('tb_member');
-		$data['id'] = $this->MSudi->GetData('tb_member');
+
 		$this->load->view('welcome_message', $data);
 	}
 
 	public function AddDataVoucher()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 
 
 		$add['id'] = $this->input->post('id');
-		$add['id_member_pemilik'] = $this->input->post('id_member_pemilik');
-		$add['id_member_digunakan'] = $this->input->post('id_member_digunakan');
+		$add['id_member_pemilik'] = null;
+		$add['id_member_digunakan'] = null;
 		$add['no_voucher'] = $this->input->post('no_voucher');
 		$add['status'] = $this->input->post('status');
-		$add['tgl_beli'] = $this->input->post('tgl_beli');
-		$add['tgl_digunakan'] = $this->input->post('tgl_digunakan');
+		$add['tgl_beli'] = null;
+		$add['tgl_digunakan'] = null;
 		$add['tgl_insert'] = date("Y-m-d H:i:s");
+		$add['id_admin'] = $data['id'];
+
 		// $add['created_by'] = $data['nama'];
 		// $add['created_at'] = date("Y-m-d H:i:s");
 		// $add['updated_by'] = Null;
 		// $add['updated_at'] = Null;
 		// $add['deleted_by'] = Null;
 		// $add['deleted_at'] = Null;
-		$add['is_active'] = 1;
+		// $add['is_active'] = 1;
 		$this->MSudi->AddData('tb_voucher', $add);
 		redirect(site_url('Welcome/DataVoucher'));
 	}
@@ -564,25 +574,28 @@ class Welcome extends CI_Controller
 	public function UpdateDataVoucher()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 
 
 		$id = $this->input->post('id');
 
 		$update['id'] = $this->input->post('id');
-		$update['id_member_pemilik'] = $this->input->post('id_member_pemilik');
-		$update['id_member_digunakan'] = $this->input->post('id_member_digunakan');
+		$update['id_member_pemilik'] = null;
+		$update['id_member_digunakan'] = null;
 		$update['no_voucher'] = $this->input->post('no_voucher');
 		$update['status'] = $this->input->post('status');
-		$update['tgl_beli'] = $this->input->post('tgl_beli');
-		$update['tgl_digunakan'] = $this->input->post('tgl_digunakan');
+		$update['tgl_beli'] = null;
+		$update['tgl_digunakan'] = null;
 		$update['tgl_insert'] = date("Y-m-d H:i:s");
+		$update['id_admin'] = $data['id'];
+
 		// $update['created_by'] = $data['nama'];
 		// $update['created_at'] = date("Y-m-d H:i:s");
 		// $update['updated_by'] = Null;
 		// $update['updated_at'] = Null;
 		// $update['deleted_by'] = Null;
 		// $update['deleted_at'] = Null;
-		$update['is_active'] = 1;
+
 		$this->MSudi->UpdateData('tb_voucher', 'id', $id, $update);
 		redirect(site_url('Welcome/DataVoucher'));
 	}
