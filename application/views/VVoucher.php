@@ -23,6 +23,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID </th>
+                            <th>ID Admin</th>
                             <th>ID Member Pemilik</th>
                             <th>ID Member Digunakan</th>
                             <th>No Voucher</th>
@@ -37,6 +38,7 @@
                         ?>
                                 <tr>
                                     <td><?php echo $ReadDS->id; ?></td>
+                                    <td><?php echo $ReadDS->id_admin; ?></td>
                                     <td><?php echo $ReadDS->id_member_pemilik; ?></td>
                                     <td><?php echo $ReadDS->id_member_digunakan; ?></td>
                                     <td><?php echo $ReadDS->no_voucher; ?></td>
