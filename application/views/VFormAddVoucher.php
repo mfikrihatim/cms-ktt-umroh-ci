@@ -10,7 +10,7 @@
     </div>
     <div class="box-body">
         <form action="<?php echo site_url('Welcome/AddDataVoucher'); ?>" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Pilih Member</label>
                 <select class="form-control" name="id_member_pemilik" required>
                     <option selected disabled>Pilih Member</option>
@@ -23,7 +23,7 @@
                     }
                     ?>
                 </select>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label>No Voucher</label>
@@ -33,17 +33,16 @@
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" placeholder="Masukan Status ">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Tanggal Beli</label>
                 <input type="date" class="form-control" name="tgl_beli" placeholder="Masukan Tanggal Beli">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label>Tanggal Digunakan</label>
                 <input type="date" class="form-control" name="tgl_digunakan" placeholder="Masukan Tanggal Digunakan">
-            </div>
-            <input type="hidden" name="created_by" class="form-control">
-            <input type="hidden" name="created_date" class="form-control">
-            <input type="hidden" name="is_active" class="form-control" value="1">
+            </div> -->
+            <input type="hidden" name="id_admin" class="form-control">
+
 
 
             <div class="box-footer">
