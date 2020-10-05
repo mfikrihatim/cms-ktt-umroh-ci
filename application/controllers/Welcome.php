@@ -211,6 +211,8 @@ class Welcome extends CI_Controller
 		$add['id'] = $this->input->post('id');
 		$add['nama'] = $this->input->post('nama');
 		$add['username'] = $this->input->post('username');
+		$username = $this->input->post('username');
+
 		$add['password'] = $this->input->post('password');
 		$add['created_by'] = $data['nama'];
 		$add['created_at'] = date("Y-m-d H:i:s");
@@ -220,8 +222,19 @@ class Welcome extends CI_Controller
 		$add['deleted_at'] = Null;
 		$add['is_active'] = 1;
 
-		$this->MSudi->AddData('tb_admin', $add);
+		$sql = $this->db->query("SELECT username FROM tb_admin where username = '$username'");
+		$cek_username = $sql->num_rows();
+
+		if ($cek_username > 0) {
+		$this->session->set_flashdata('message', 'USERNAME Sudah digunakan sebelumnya');
 		redirect(site_url('Welcome/DataAdmin'));
+		}else{
+			// var_dump($add);
+			$this->MSudi->AddData('tb_admin', $add);
+			redirect(site_url('Welcome/DataAdmin'));
+		}
+
+
 	}
 
 	public function UpdateDataAdmin()
@@ -233,12 +246,22 @@ class Welcome extends CI_Controller
 
 		$update['username'] = $this->input->post('username');
 		$update['password'] = $this->input->post('password');
-
+		$username = $this->input->post('username');
 		$update['updated_by'] = $data['nama'];
 		$update['updated_at'] = date("Y-m-d H:i:s");
 		$update['is_active'] = 1;
-		$this->MSudi->UpdateData('tb_admin', 'id', $id, $update);
+		$sql = $this->db->query("SELECT username FROM tb_admin where username = '$username'");
+		$cek_username = $sql->num_rows();
+
+		if ($cek_username> 0) {
+		$this->session->set_flashdata('update', 'USERNAME Sudah digunakan sebelumnya');
 		redirect(site_url('Welcome/DataAdmin'));
+		}else{
+			$this->MSudi->UpdateData('tb_admin', 'id', $id, $update);
+			redirect(site_url('Welcome/DataAdmin'));
+		}
+		
+		
 	}
 
 

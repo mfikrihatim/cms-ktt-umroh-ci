@@ -7,7 +7,10 @@ class MSudi extends CI_Model
     {
         $this->db->insert($tabel,$data);
     }
-
+    function cek_user($username){
+        $sql = $this->db->query("SELECT username FROM tb_admin where username='$username'");
+        return $sql->result();
+    }
     function UpdateData($tabel,$fieldid,$fieldvalue,$data=array())
     {
         $this->db->where($fieldid,$fieldvalue)->update($tabel,$data);
