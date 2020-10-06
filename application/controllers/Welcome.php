@@ -637,6 +637,195 @@ class Welcome extends CI_Controller
 		redirect(site_url('Welcome/DataVoucher'));
 	}
 
+
+
+	public function DataKategoriKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tbl_kategori_komisi', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['nama_kategori'] = $tampil->nama_kategori;
+	
+			$data['content'] = 'VFormUpdateKategoriKomisi';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataKategoriKomisi'] = $this->MSudi->GetDataWhere1('tbl_kategori_komisi', 'is_active', 1, 'id', 'asc')->result();
+			$data['content'] = 'VKategoriKomisi';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+
+
+	public function AddDataKategoriKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$add['id'] = $this->input->post('id');
+		$add['nama_kategori'] = $this->input->post('nama_kategori');
+
+		$add['is_active'] = 1;
+		$this->MSudi->AddData('tbl_kategori_komisi', $add);
+		redirect(site_url('Welcome/DataKategoriKomisi'));
+	}
+
+	public function UpdateDataKategoriKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$id = $this->input->post('id');
+
+		$update['id'] = $this->input->post('id');
+		$update['nama_kategori'] = $this->input->post('nama_kategori');;
+
+		$this->MSudi->UpdateData('tbl_kategori_komisi', 'id', $id, $update);
+		redirect(site_url('Welcome/DataKategoriKomisi'));
+	}
+
+
+	public function DeleteDataKategoriKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$id = $this->uri->segment('3');
+		$update['is_active'] = 0;
+		
+
+		$this->MSudi->UpdateData('tbl_kategori_komisi', 'id', $id, $update);
+		redirect(site_url('Welcome/DataKategoriKomisi'));
+	}
+
+
+
+
+	public function DataMasterKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		if ($this->uri->segment(4) == 'view') {
+			$id_komisi= $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tbl_master_komisi', 'id_komisi', $id_komisi)->row();
+			$data['kategori'] = $this->MSudi->GetDataWhere('tbl_kategori_komisi', 'is_active', 1)->result();
+			$data['level_member'] = $this->MSudi->GetDataWhere('tbl_level_member', 'is_active', 1)->result();
+			$data['level_target'] = $this->MSudi->GetDataWhere('tbl_level_member', 'is_active', 1)->result();
+			
+			$data['detail']['id_komisi'] = $tampil->id_komisi;
+			$data['detail']['nama_komisi'] = $tampil->nama_komisi;
+			$data['detail']['id_kategori_komisi'] = $tampil->id_kategori_komisi;
+			$data['detail']['kd_level_member'] = $tampil->kd_level_member;
+			$data['detail']['target'] = $tampil->target;
+			$data['detail']['kd_level_target'] = $tampil->kd_level_target;
+			$data['detail']['target_hari'] = $tampil->target_hari;
+			$data['detail']['target_bonus'] = $tampil->target_bonus;
+			$data['detail']['nominal_ujroh_satuan'] = $tampil->nominal_ujroh_satuan;
+			$data['detail']['created_by'] = $tampil->created_by;
+			$data['detail']['created_at'] = $tampil->created_at;
+			$data['detail']['updated_by'] = $tampil->updated_by;
+			$data['detail']['updated_at'] = $tampil->updated_at;
+			$data['detail']['deleted_by'] = $tampil->deleted_by;
+			$data['detail']['deleted_at'] = $tampil->deleted_at;
+			$data['detail']['is_active'] = $tampil->is_active;
+
+
+			$data['content'] = 'VFormUpdateMasterKomisi';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataMasterKomisi'] = $this->MSudi->GetDataWhere1('tbl_master_komisi', 'is_active', 1, 'id_komisi', 'asc')->result();
+			$data['content'] = 'VMasterKomisi';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+	public function VFormAddMasterKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddMasterKomisi';
+		$data['kategori'] = $this->MSudi->GetDataWhere('tbl_kategori_komisi', 'is_active', 1)->result();
+		$data['level_member'] = $this->MSudi->GetDataWhere('tbl_level_member', 'is_active', 1)->result();
+		$data['level_target'] = $this->MSudi->GetDataWhere('tbl_level_member', 'is_active', 1)->result();
+		
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function AddDataMasterKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$add['id_komisi'] = $this->input->post('id_komisi');
+		$add['nama_komisi'] = $this->input->post('nama_komisi');
+		$add['id_kategori_komisi'] = $this->input->post('id_kategori_komisi');
+		$add['kd_level_member'] = $this->input->post('kd_level_member');
+		$add['target'] = $this->input->post('target');
+		$add['kd_level_target'] = $this->input->post('kd_level_target');
+		$add['target_hari'] = $this->input->post('target_hari');
+		$add['target_bonus'] = $this->input->post('target_bonus');
+		$add['nominal_ujroh_satuan'] = $this->input->post('nominal_ujroh_satuan');
+		$add['created_by'] = $data['nama'];
+		$add['created_at'] = date("Y-m-d H:i:s");
+		$add['updated_by'] = null;
+		$add['updated_at'] = null;
+		$add['deleted_by'] = null;
+		$add['deleted_at'] = null;
+
+		$add['is_active'] = 1;
+		$this->MSudi->AddData('tbl_master_komisi', $add);
+		redirect(site_url('Welcome/DataMasterKomisi'));
+	}
+
+	public function UpdateDataMasterKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$id_komisi = $this->input->post('id_komisi');
+
+		$update['nama_komisi'] = $this->input->post('nama_komisi');
+		$update['id_kategori_komisi'] = $this->input->post('id_kategori_komisi');
+		$update['kd_level_member'] = $this->input->post('kd_level_member');
+		$update['target'] = $this->input->post('target');
+		$update['kd_level_target'] = $this->input->post('kd_level_target');
+		$update['target_hari'] = $this->input->post('id');
+		$update['target_bonus'] = $this->input->post('target_bonus');
+		$update['nominal_ujroh_satuan'] = $this->input->post('nominal_ujroh_satuan');
+	
+		$update['updated_by'] =  $data['nama'];
+		$update['updated_at'] = date("Y-m-d H:i:s");
+		
+
+		$this->MSudi->UpdateData('tbl_master_komisi', 'id_komisi', $id_komisi, $update);
+		redirect(site_url('Welcome/DataMasterKomisi'));
+	}
+
+
+	public function DeleteDataMasterKomisi()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$id_komisi = $this->uri->segment('3');
+		$update['is_active'] = 0;
+		$update['deleted_by'] =  $data['nama'];
+		$update['deleted_at'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->UpdateData('tbl_master_komisi', 'id_komisi', $id_komisi, $update);
+		redirect(site_url('Welcome/DataMasterKomisi'));
+	}
+
+
+
 	public function Logout()
 	{
 		$data['username'] = $this->session->userdata('username');
