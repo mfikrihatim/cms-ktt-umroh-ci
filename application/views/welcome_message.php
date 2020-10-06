@@ -170,6 +170,16 @@
             </a>
           </li>
           <li>
+            <a href="<?php echo site_url('Welcome/DataKategoriKomisi'); ?>">
+              <i class="fa fa-user"> <span>Data Kategori Komisi</i></span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo site_url('Welcome/DataMasterKomisi'); ?>">
+              <i class="fa fa-user"> <span>Data Master Komisi</i></span>
+            </a>
+          </li>
+          <li>
             <a href="<?php echo site_url('Welcome/Logout'); ?>">
               <i class="fa  fa-arrow-left"> <span>Logout</i></span>
             </a>
