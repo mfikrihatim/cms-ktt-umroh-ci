@@ -1,3 +1,10 @@
+<?php
+  if($this->session->flashdata('update')){
+    echo '<div class="alert alert-danger"><p class="text-center align-middle">';
+    echo $this->session->flashdata('update');
+    echo '</p></div>';
+  }
+?>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">

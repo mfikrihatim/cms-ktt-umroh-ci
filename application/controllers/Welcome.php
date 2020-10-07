@@ -252,7 +252,7 @@ class Welcome extends CI_Controller
 		$cek_username = $sql->num_rows();
 
 		if ($cek_username > 0) {
-			$this->session->set_flashdata('update', 'USERNAME Sudah digunakan sebelumnya');
+			$this->session->set_flashdata('update', 'USERNAME GAGAL DI UPDATE <br>USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
 			redirect(site_url('Welcome/DataAdmin'));
 		} else {
 			$this->MSudi->UpdateData('tb_admin', 'id', $id, $update);
@@ -284,6 +284,8 @@ class Welcome extends CI_Controller
 		if ($this->uri->segment(4) == 'view') {
 			$id = $this->uri->segment(3);
 			$tampil = $this->MSudi->GetDataWhere('tb_member', 'id', $id)->row();
+			$data['no_voucher'] = $this->MSudi->GetData('tb_voucher');
+
 			$data['detail']['id'] = $tampil->id;
 			$data['detail']['id_voucher'] = $tampil->id_voucher;
 			$data['detail']['nama'] = $tampil->nama;
@@ -371,6 +373,7 @@ class Welcome extends CI_Controller
 		$add['id_voucher'] = $this->input->post('id_voucher');
 		$add['nama'] = $this->input->post('nama');
 		$add['username'] = $this->input->post('username');
+		$username = $this->input->post('username');
 		$add['password'] = $this->input->post('password');
 		$add['alamat'] = $this->input->post('alamat');
 		$add['no_telp_hp'] = $this->input->post('no_telp_hp');
@@ -431,9 +434,17 @@ class Welcome extends CI_Controller
 			$data = array('upload_data' => $this->upload->data());
 			$add['foto'] = implode($this->upload->data());
 		}
+		$sql = $this->db->query("SELECT username FROM tb_member where username = '$username'");
+		$cek_username = $sql->num_rows();
 
-		$this->MSudi->AddData('tb_member', $add);
-		redirect(site_url('Welcome/DataMember'));
+		if ($cek_username > 0) {
+			$this->session->set_flashdata('message', 'USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
+			redirect(site_url('Welcome/VFormAddMember'));
+		} else {
+			// var_dump($add);
+			$this->MSudi->AddData('tb_member', $add);
+			redirect(site_url('Welcome/DataMember'));
+		}
 	}
 
 	public function UpdateDataMember()
@@ -446,6 +457,7 @@ class Welcome extends CI_Controller
 		$update['id_voucher'] = $this->input->post('id_voucher');
 		$update['nama'] = $this->input->post('nama');
 		$update['username'] = $this->input->post('username');
+		$username = $this->input->post('username');
 		$update['password'] = $this->input->post('password');
 		$update['alamat'] = $this->input->post('alamat');
 		$update['no_telp_hp'] = $this->input->post('no_telp_hp');
@@ -499,11 +511,17 @@ class Welcome extends CI_Controller
 			$data = array('upload_data' => $this->upload->data());
 			$update['foto'] = implode($this->upload->data());
 		}
+		$sql = $this->db->query("SELECT username FROM tb_member where username = '$username'");
+		$cek_username = $sql->num_rows();
+
+		if ($cek_username > 0) {
+			$this->session->set_flashdata('update', 'USERNAME GAGAL DI UPDATE <br>USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
+			redirect(site_url('Welcome/DataMember'));
+		} else {
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
 		redirect(site_url('Welcome/DataMember'));
+		}
 	}
-
-
 	public function DeleteDataMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
