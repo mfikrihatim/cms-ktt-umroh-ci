@@ -13,7 +13,7 @@
     <div class="col-md-15">
         <!-- Custom Tabs -->
 
-        <form action="<?php echo site_url('Welcome/AddDataMember'); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo site_url('Welcome/AddDataPendaftaranMember'); ?>" method="post" enctype="multipart/form-data">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Pribadi</a></li>

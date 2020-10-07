@@ -6,6 +6,8 @@ class MSudi extends CI_Model
     function AddData($tabel, $data=array())
     {
         $this->db->insert($tabel,$data);
+        $last_id = $this->db->insert_id();
+        return $last_id;
     }
     function cek_user($username){
         $sql = $this->db->query("SELECT username FROM tb_admin where username='$username'");

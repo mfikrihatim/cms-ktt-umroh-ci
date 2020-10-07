@@ -9,9 +9,9 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title">Data Member</h2>
+                <h2 class="box-title">DataPendaftaran Member</h2>
                 <div class="box-header">
-                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddMember'); ?>">
+                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddPendaftaranMember'); ?>">
                             <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
                         </a></h3>
 
@@ -50,6 +50,7 @@
                             <th>Level</th>
                             <th>Tanggal Insert </th>
                             <th>List ID Upline</th>
+                            <th> ID Member</th>
                             <th>Kota</th>
                             <th>Kode Pos</th>
                             <th>Pekerjaan</th>
@@ -80,8 +81,8 @@
                             <th>Is Avtive </th>
                         </tr>
                         <?php
-                        if (!empty($DataMember)) {
-                            foreach ($DataMember as $ReadDS) {
+                        if (!empty($DataPendaftaranMember)) {
+                            foreach ($DataPendaftaranMember as $ReadDS) {
                         ?>
                                 <tr>
                                     <td><?php echo $ReadDS->id; ?></td>
@@ -105,6 +106,7 @@
                                     <td><?php echo $ReadDS->level; ?></td>
                                     <td><?php echo $ReadDS->tgl_insert; ?></td>
                                     <td><?php echo $ReadDS->list_id_upline; ?></td>
+                                    <td><?php echo $ReadDS->id_member; ?></td>
                                     <td><?php echo $ReadDS->kota; ?></td>
                                     <td><?php echo $ReadDS->kodepos; ?></td>
                                     <td><?php echo $ReadDS->pekerjaan; ?></td>
@@ -135,8 +137,8 @@
                                     <td><?php echo $ReadDS->is_active; ?></td>
 
                                     <td>
-                                        <a href="<?php echo site_url('Welcome/DataMember/' . $ReadDS->id . '/view') ?>"><i class="fa fa-edit"></i></a>
-                                        <a href="<?php echo site_url('Welcome/DeleteDataMember/' . $ReadDS->id) ?>"><i class="fa fa-fw fa-trash"></i></a>
+                                        <a href="<?php echo site_url('Welcome/DataPendaftaranMember/' . $ReadDS->id . '/view') ?>"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo site_url('Welcome/DeleteDataPendaftaranMember/' . $ReadDS->id) ?>"><i class="fa fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
                         <?php

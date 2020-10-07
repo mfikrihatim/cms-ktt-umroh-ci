@@ -1,17 +1,10 @@
-<?php
-  if($this->session->flashdata('update')){
-    echo '<div class="alert alert-danger"><p class="text-center align-middle">';
-    echo $this->session->flashdata('update');
-    echo '</p></div>';
-  }
-?>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title">Data Member</h2>
+                <h2 class="box-title">Data Customer</h2>
                 <div class="box-header">
-                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddMember'); ?>">
+                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddCustomer'); ?>">
                             <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
                         </a></h3>
 
@@ -80,8 +73,8 @@
                             <th>Is Avtive </th>
                         </tr>
                         <?php
-                        if (!empty($DataMember)) {
-                            foreach ($DataMember as $ReadDS) {
+                        if (!empty($DataCustomer)) {
+                            foreach ($DataCustomer as $ReadDS) {
                         ?>
                                 <tr>
                                     <td><?php echo $ReadDS->id; ?></td>
@@ -95,7 +88,7 @@
                                     <td><?php echo $ReadDS->kota_lahir; ?></td>
                                     <td><?php echo $ReadDS->tgl_lahir; ?></td>
                                     <td><?php echo $ReadDS->jk; ?></td>
-                                    <td><img src="<?php echo base_url('./upload/Member/') . $ReadDS->foto; ?>" width="auto" height="100px"></td>
+                                    <td><img src="<?php echo base_url('./upload/Customer/') . $ReadDS->foto; ?>" width="auto" height="100px"></td>
                                     <td><?php echo $ReadDS->nama_bank; ?></td>
                                     <td><?php echo $ReadDS->nomor_rekening; ?></td>
                                     <td><?php echo $ReadDS->atas_nama; ?></td>
@@ -135,8 +128,8 @@
                                     <td><?php echo $ReadDS->is_active; ?></td>
 
                                     <td>
-                                        <a href="<?php echo site_url('Welcome/DataMember/' . $ReadDS->id . '/view') ?>"><i class="fa fa-edit"></i></a>
-                                        <a href="<?php echo site_url('Welcome/DeleteDataMember/' . $ReadDS->id) ?>"><i class="fa fa-fw fa-trash"></i></a>
+                                        <a href="<?php echo site_url('Welcome/DataCustomer/' . $ReadDS->id . '/view') ?>"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo site_url('Welcome/DeleteDataCustomer/' . $ReadDS->id) ?>"><i class="fa fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
                         <?php

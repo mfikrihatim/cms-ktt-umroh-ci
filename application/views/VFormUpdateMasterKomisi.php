@@ -55,36 +55,15 @@
             </div>
 
             
-            <label>Target Hari</label>
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_hari" id="target_hari" value="30" checked>
-                                    30 Hari
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_hari" id="target_hari" value="60" >
-                                    60 Hari
-                                </label>
-                            </div>
-                        </div>
-                        <label>Target Bonus</label>
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_bonus" id="target_bonus" value="Mobil" checked>
-                                    Mobil
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_bonus" id="target_bonus" value="Motor" >
-                                    Motor
-                                </label>
-                            </div>
-                        </div>
+            <div class="form-group">
+                <label>Target Harian</label>
+                <input type="number" class="form-control" name="target_hari" placeholder="Target Harian" value="<?php echo $detail['target_hari']; ?>">
+            </div>
+        
+            <div class="form-group">
+                <label>Target Bonus</label>
+                <input type="text" class="form-control" name="target_bonus" placeholder="Target Bonus" value="<?php echo $detail['target_bonus']; ?>">
+            </div>
             <div class="form-group">
                 <label>Nominal Ujroh Satuan</label>
                 <input type="number" class="form-control" name="nominal_ujroh_satuan" placeholder="Nominal Komisi Per Jamaah"  value="<?php echo $detail['nominal_ujroh_satuan']; ?>">

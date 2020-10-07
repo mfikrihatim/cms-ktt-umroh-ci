@@ -1,19 +1,8 @@
-<?php
-  if($this->session->flashdata('message')){
-    echo '<div class="alert alert-warning"><p class="text-center align-middle">';
-    echo $this->session->flashdata('message');
-    echo '</p></div>';
-  }elseif($this->session->flashdata('update')){
-    echo '<div class="alert alert-danger"><p class="text-center align-middle">';
-    echo $this->session->flashdata('update');
-    echo '</p></div>';
-  }
-?>
 <div class="row">
     <div class="col-md-15">
         <!-- Custom Tabs -->
 
-        <form action="<?php echo site_url('Welcome/AddDataMember'); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo site_url('Welcome/AddDataCustomer'); ?>" method="post" enctype="multipart/form-data">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Pribadi</a></li>
@@ -239,7 +228,7 @@
                             <input type="number" class="form-control" name="list_id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline">
                         </div>
                         <div class="form-group">
-                            <label>ID Member</label>
+                            <label>ID Customer</label>
                             <input type="number" class="form-control" name="id_number" placeholder="Masukan Nama Posisi">
                         </div>
                         <div class="form-group">
