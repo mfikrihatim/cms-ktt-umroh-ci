@@ -36,7 +36,7 @@
                     //  $kategori = $this->MSudi->GetDataWhere('tbl_master_komisi', 'is_active', 1)->result();
                     foreach ($level_member as $ReadDS) {
                     ?>
-                        <option value="<?php echo $ReadDS->id; ?>"><?php echo $ReadDS->kd_level; ?></option>
+                        <option value="<?php echo $ReadDS->id; ?>"><?php echo $ReadDS->nama_level; ?></option>
                     <?php
                     }
                     ?>
@@ -55,7 +55,7 @@
                     //  $kategori = $this->MSudi->GetDataWhere('tbl_master_komisi', 'is_active', 1)->result();
                     foreach ($level_target as $ReadDS) {
                     ?>
-                        <option value="<?php echo $ReadDS->id; ?>"><?php echo $ReadDS->kd_level; ?></option>
+                        <option value="<?php echo $ReadDS->id; ?>"><?php echo $ReadDS->nama_level; ?></option>
                     <?php
                     }
                     ?>
@@ -63,36 +63,16 @@
             </div>
 
             
-            <label>Target Hari</label>
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_hari" id="target_hari" value="30" checked>
-                                    30 Hari
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_hari" id="target_hari" value="60" >
-                                    60 Hari
-                                </label>
-                            </div>
-                        </div>
-                        <label>Target Bonus</label>
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_bonus" id="target_bonus" value="Mobil" checked>
-                                    Mobil
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="target_bonus" id="target_bonus" value="Motor" >
-                                    Motor
-                                </label>
-                            </div>
-                        </div>
+            <div class="form-group">
+                <label>Target Harian</label>
+                <input type="number" class="form-control" name="target_hari" placeholder="Target Harian">
+            </div>
+        
+            <div class="form-group">
+                <label>Target Bonus</label>
+                <input type="text" class="form-control" name="target_bonus" placeholder="Target Bonus">
+            </div>
+        
             <div class="form-group">
                 <label>Nominal Ujroh Satuan</label>
                 <input type="number" class="form-control" name="nominal_ujroh_satuan" placeholder="Nominal Komisi Per Jamaah">
