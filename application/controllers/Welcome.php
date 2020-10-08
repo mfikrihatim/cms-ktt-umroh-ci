@@ -13,6 +13,7 @@ class Welcome extends CI_Controller
 	{
 		if ($this->session->userdata('Login')) {
 			$data['nama'] = $this->session->userdata('nama');
+			$data['level'] = $this->session->userdata('level');
 
 			$data['content'] = 'VBlank';
 			$this->load->view('welcome_message', $data);
@@ -1078,6 +1079,7 @@ class Welcome extends CI_Controller
 	public function DataPendaftaranMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 		if ($this->uri->segment(4) == 'view') {
 			$id = $this->uri->segment(3);
 			$tampil = $this->MSudi->GetDataWhere('tb_member', 'id', $id)->row();
@@ -1142,7 +1144,7 @@ class Welcome extends CI_Controller
 		} else {
 			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
 			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
-			$data['DataPendaftaranMember'] = $this->MSudi->GetDataWhere1('tb_member', 'is_active', 1, 'id', 'asc')->result();
+			$data['DataPendaftaranMember'] = $this->MSudi->GetDataWhere2('tb_member', 'is_active', 1 ,'id_member',$data['id'] ,'id', 'asc')->result();
 			$data['content'] = 'VPendaftaranMember';
 		}
 
@@ -1154,6 +1156,7 @@ class Welcome extends CI_Controller
 	public function VFormAddPendaftaranMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 
 
 		$data['content'] = 'VFormAddPendaftaranMember';
@@ -1165,7 +1168,7 @@ class Welcome extends CI_Controller
 	public function AddDataPendaftaranMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
-
+		$data['id'] = $this->session->userdata('id');
 
 		$add['id_voucher'] = $this->input->post('id_voucher');
 		$add['nama'] = $this->input->post('nama');
@@ -1187,7 +1190,7 @@ class Welcome extends CI_Controller
 		$add['level'] = $this->input->post('level');
 		$add['tgl_insert'] = date("Y-m-d H:i:s");
 		$add['list_id_upline'] = $this->input->post('list_id_upline');
-	
+		$add['id_member'] = $data['id'];
 		$add['created_by'] = $data['nama'];
 		$add['created_at'] = date("Y-m-d H:i:s");
 		$add['updated_by'] = Null;
@@ -1240,8 +1243,8 @@ class Welcome extends CI_Controller
 		} else {
 			// var_dump($add);
 			$id_member = $this->MSudi->AddData('tb_member', $add);
-			$update['id_member'] = $id_member;
-			$this->MSudi->UpdateData('tb_member', 'id', $id_member, $update);
+			// $update['id_member'] = $id_member;
+			// $this->MSudi->UpdateData('tb_member', 'id', $id_member, $update);
 			redirect(site_url('Welcome/DataPendaftaranMember'));
 		}
 	}
@@ -1249,6 +1252,7 @@ class Welcome extends CI_Controller
 	public function UpdateDataPendaftaranMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 
 
 		$id = $this->input->post('id');
@@ -1273,7 +1277,7 @@ class Welcome extends CI_Controller
 		$update['level'] = $this->input->post('level');
 		$update['tgl_insert'] = date("Y-m-d H:i:s");
 		$update['list_id_upline'] = $this->input->post('list_id_upline');
-		$update['id_member'] = $this->input->post('id_member');
+		$update['id_member'] = $data['id'];
 		$update['updated_by'] = $data['nama'];
 		$update['updated_at'] = date("Y-m-d H:i:s");
 		$update['is_active'] = 1;
@@ -1324,6 +1328,7 @@ class Welcome extends CI_Controller
 	public function DeleteDataPendaftaranMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
 
 		$id = $this->uri->segment('3');
 		$update['is_active'] = 0;

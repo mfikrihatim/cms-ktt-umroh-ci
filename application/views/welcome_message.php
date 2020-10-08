@@ -427,7 +427,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          SISTEM CMS UMROH
+            SISTEM CMS UMROH
           <small>Server</small>
         </h1>
         <ol class="breadcrumb">

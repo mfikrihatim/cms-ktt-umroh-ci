@@ -15,6 +15,8 @@
                     <div class="tab-pane active" id="tab_1">
                         <!-- Data Pribadi -->
                         <div class="form-group">
+                        <input type="hidden" name="id" value="<?php echo $detail['id']; ?>" class="form-control">
+
                             <label>Pilih Voucher</label>
                             <select class="form-control" name="id_voucher" required>
                                 <option selected disabled>Pilih Voucher</option>
@@ -41,11 +43,9 @@
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" name="password" id="exampleInputPassword1" value="<?php echo $detail['password']; ?>" placeholder="Masukan Password">
                         </div>
-                        <div class="box-body pad">
+                        <div class="form-group">
                             <label>Alamat</label>
-                            <textarea id="editor1" name="alamat" rows="10" cols="80">
-                            <?php echo $detail['alamat']; ?>
-                    </textarea>
+                            <input type="text" class="form-control" name="alamat" value="<?php echo $detail['alamat']; ?>" placeholder="Masukan Alamat Anda">
                         </div>
 
                         <div class="form-group">

@@ -9,7 +9,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title">DataPendaftaran Member</h2>
+                <h2 class="box-title">Data Pendaftaran Member</h2>
                 <div class="box-header">
                     <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddPendaftaranMember'); ?>">
                             <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
