@@ -426,10 +426,10 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>
-          SISTEM CMS UMROH
+        <h2>
+            SISTEM CMS UMROH
           <small>Server</small>
-        </h1>
+        </h2>
         <ol class="breadcrumb">
           <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Examples</a></li>

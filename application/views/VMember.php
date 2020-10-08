@@ -50,6 +50,7 @@
                             <th>Level</th>
                             <th>Tanggal Insert </th>
                             <th>List ID Upline</th>
+                            <th>ID Member</th>
                             <th>Kota</th>
                             <th>Kode Pos</th>
                             <th>Pekerjaan</th>
@@ -105,6 +106,7 @@
                                     <td><?php echo $ReadDS->level; ?></td>
                                     <td><?php echo $ReadDS->tgl_insert; ?></td>
                                     <td><?php echo $ReadDS->list_id_upline; ?></td>
+                                    <td><?php echo $ReadDS->id_member; ?></td>
                                     <td><?php echo $ReadDS->kota; ?></td>
                                     <td><?php echo $ReadDS->kodepos; ?></td>
                                     <td><?php echo $ReadDS->pekerjaan; ?></td>
