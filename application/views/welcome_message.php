@@ -150,7 +150,11 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
+          <?php
+     if($_SESSION['level'] == 'admin'){ // Jika role-nya admin
+      ?>
           <li>
+            
             <a href="<?php echo site_url('Welcome/DataAdmin'); ?>">
               <i class="fa fa-user"> <span>Data Admin</i></span>
             </a>
@@ -189,7 +193,24 @@
               <i class="fa  fa-arrow-left"> <span>Logout</i></span>
             </a>
           </li>
-
+      
+          <?php
+}
+       elseif($_SESSION['level'] == 'member'){
+      ?>
+      <li>
+            <a href="<?php echo site_url('Welcome/DataPendaftaranMember'); ?>">
+              <i class="fa  fa-arrow-left"> <span>Pendaftaran Member</i></span>
+            </a>
+          </li>
+       <li>
+            <a href="<?php echo site_url('Welcome/Logout'); ?>">
+              <i class="fa  fa-arrow-left"> <span>Logout</i></span>
+            </a>
+          </li>
+          <?php
+       }
+      ?>
           <!-- <li class="active treeview menu-open">
             <a href="#">
               <i class="fa  fa-database"></i> <span>Master Data</span>

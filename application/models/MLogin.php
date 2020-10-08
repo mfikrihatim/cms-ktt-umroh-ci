@@ -23,6 +23,7 @@
 				$this->session->set_userdata('id', $row->id);
 				$this->session->set_userdata('username', $row->username);
 				$this->session->set_userdata('nama', $row->nama);
+				$this->session->set_userdata('level', $level);
     			return $row->id;
 			}else{
 				
