@@ -14,9 +14,16 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <!-- Data Pribadi -->
-                        <div class="form-group">
-                        <input type="hidden" name="id" value="<?php echo $detail['id']; ?>" class="form-control">
+                       
 
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="hidden" name="id" value="<?php echo $detail['id']; ?>" class="form-control">
+
+                            <input type="text" class="form-control" name="nama" value="<?php echo $detail['nama']; ?>" placeholder="Masukan Nama ">
+                        </div>
+                        <div class="form-group">
+                        
                             <label>Pilih Voucher</label>
                             <select class="form-control" name="id_voucher" required>
                                 <option selected disabled>Pilih Voucher</option>
@@ -29,11 +36,6 @@
                                 }
                                 ?>
                             </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $detail['nama']; ?>" placeholder="Masukan Nama ">
                         </div>
                         <div class="form-group">
                             <label>Username</label>

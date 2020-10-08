@@ -25,6 +25,12 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <!-- Data Pribadi -->
+                      
+
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Masukan Nama ">
+                        </div>
                         <div class="form-group">
                             <label>Pilih Voucher</label>
                             <select class="form-control" name="id_voucher" required>
@@ -38,11 +44,6 @@
                                 }
                                 ?>
                             </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Masukan Nama ">
                         </div>
                         <div class="form-group">
                             <label>Username</label>
