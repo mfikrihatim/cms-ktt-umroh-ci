@@ -1,9 +1,9 @@
 <?php
-  if($this->session->flashdata('update')){
+if ($this->session->flashdata('update')) {
     echo '<div class="alert alert-danger"><p class="text-center align-middle">';
     echo $this->session->flashdata('update');
     echo '</p></div>';
-  }
+}
 ?>
 <div class="row">
     <div class="col-xs-12">
@@ -44,7 +44,7 @@
                             <th>Nama Bank</th>
                             <th>Nomor Rekening</th>
                             <th>Atas Nama</th>
-                            <th>Pin</th>
+                            <!-- <th>Pin</th> -->
                             <th>ID Upline</th>
                             <th>Posisi</th>
                             <th>Level</th>
@@ -100,7 +100,7 @@
                                     <td><?php echo $ReadDS->nama_bank; ?></td>
                                     <td><?php echo $ReadDS->nomor_rekening; ?></td>
                                     <td><?php echo $ReadDS->atas_nama; ?></td>
-                                    <td><?php echo $ReadDS->pin; ?></td>
+                                    <!-- <td><?php echo $ReadDS->pin; ?></td> -->
                                     <td><?php echo $ReadDS->id_upline; ?></td>
                                     <td><?php echo $ReadDS->posisi; ?></td>
                                     <td><?php echo $ReadDS->level; ?></td>

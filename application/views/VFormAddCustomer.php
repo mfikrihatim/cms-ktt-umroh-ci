@@ -94,6 +94,32 @@
                             <input type="number" class="form-control" name="npwp" placeholder="Masukan NPWP">
                         </div>
 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">ID Upline</label>
+                            <input type="number" class="form-control" name="id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline">
+                        </div>
+                        <div class="form-group">
+                            <label>Posisi</label>
+                            <input type="text" class="form-control" name="posisi" placeholder="Masukan Nama Posisi">
+                        </div>
+                        <div class="form-group">
+                            <label>Level</label>
+                            <input type="number" class="form-control" name="level" placeholder="Masukan Level">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">List Upline</label>
+                            <input type="number" class="form-control" name="list_id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline">
+                        </div>
+                        <div class="form-group">
+                            <label>ID Customer</label>
+                            <input type="number" class="form-control" name="id_number" placeholder="Masukan Nama Posisi">
+                        </div>
+                        <div class="form-group">
+                            <label>Kota</label>
+                            <input type="text" class="form-control" name="kota" placeholder="Masukan Kota">
+                        </div>
+
+
 
                         <div class="form-group">
                             <label for="exampleInputFile">Foto</label>
@@ -207,34 +233,10 @@
                             <label>Atas Nama</label>
                             <input type="text" class="form-control" name="atas_nama" placeholder="Masukan Atas Nama">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Pin</label>
                             <input type="password" class="form-control" name="pin" placeholder="Masukan PIN">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">ID Upline</label>
-                            <input type="number" class="form-control" name="id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline">
-                        </div>
-                        <div class="form-group">
-                            <label>Posisi</label>
-                            <input type="text" class="form-control" name="posisi" placeholder="Masukan Nama Posisi">
-                        </div>
-                        <div class="form-group">
-                            <label>Level</label>
-                            <input type="number" class="form-control" name="level" placeholder="Masukan Level">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">List Upline</label>
-                            <input type="number" class="form-control" name="list_id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline">
-                        </div>
-                        <div class="form-group">
-                            <label>ID Customer</label>
-                            <input type="number" class="form-control" name="id_number" placeholder="Masukan Nama Posisi">
-                        </div>
-                        <div class="form-group">
-                            <label>Kota</label>
-                            <input type="text" class="form-control" name="kota" placeholder="Masukan Kota">
-                        </div>
+                        </div> -->
 
                     </div>
 

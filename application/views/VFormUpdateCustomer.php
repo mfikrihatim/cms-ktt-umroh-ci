@@ -93,6 +93,30 @@
                             <label>NPWP</label>
                             <input type="number" class="form-control" name="npwp" value="<?php echo $detail['npwp']; ?>" placeholder="Masukan NPWP">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">ID Upline</label>
+                            <input type="number" class="form-control" name="id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline" value="<?php echo $detail['id_upline']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Posisi</label>
+                            <input type="text" class="form-control" name="posisi" placeholder="Masukan Nama Posisi" value="<?php echo $detail['posisi']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Level</label>
+                            <input type="number" class="form-control" name="level" placeholder="Masukan Level" value="<?php echo $detail['level']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">List Upline</label>
+                            <input type="number" class="form-control" name="list_id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline" value="<?php echo $detail['list_id_upline']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>ID Member</label>
+                            <input type="number" class="form-control" name="id_member" placeholder="Masukan Nama Posisi" value="<?php echo $detail['id_member']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Kota</label>
+                            <input type="text" class="form-control" name="kota" placeholder="Masukan Kota" value="<?php echo $detail['kota']; ?>">
+                        </div>
 
 
                         <div class="form-group">
@@ -233,36 +257,10 @@
                             <label>Atas Nama</label>
                             <input type="text" class="form-control" name="atas_nama" placeholder="Masukan Atas Nama" value="<?php echo $detail['atas_nama']; ?>">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Pin</label>
                             <input type="password" class="form-control" name="pin" placeholder="Masukan PIN" value="<?php echo $detail['pin']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">ID Upline</label>
-                            <input type="number" class="form-control" name="id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline" value="<?php echo $detail['id_upline']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Posisi</label>
-                            <input type="text" class="form-control" name="posisi" placeholder="Masukan Nama Posisi" value="<?php echo $detail['posisi']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Level</label>
-                            <input type="number" class="form-control" name="level" placeholder="Masukan Level" value="<?php echo $detail['level']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">List Upline</label>
-                            <input type="number" class="form-control" name="list_id_upline" id="exampleInputPassword1" placeholder="Masukan ID Upline" value="<?php echo $detail['list_id_upline']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>ID Member</label>
-                            <input type="number" class="form-control" name="id_member" placeholder="Masukan Nama Posisi" value="<?php echo $detail['id_member']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Kota</label>
-                            <input type="text" class="form-control" name="kota" placeholder="Masukan Kota" value="<?php echo $detail['kota']; ?>">
-                        </div>
-
-
+                        </div> -->
                     </div>
 
 
