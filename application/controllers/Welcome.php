@@ -385,7 +385,7 @@ class Welcome extends CI_Controller
 		$add['nama_bank'] = $this->input->post('nama_bank');
 		$add['nomor_rekening'] = $this->input->post('nomor_rekening');
 		$add['atas_nama'] = $this->input->post('atas_nama');
-		$add['pin'] = $this->input->post('pin');
+		$add['pin'] = null;
 		$add['id_upline'] = $this->input->post('id_upline');
 		$add['posisi'] = $this->input->post('posisi');
 		$add['level'] = $this->input->post('level');
@@ -469,7 +469,7 @@ class Welcome extends CI_Controller
 		$update['nama_bank'] = $this->input->post('nama_bank');
 		$update['nomor_rekening'] = $this->input->post('nomor_rekening');
 		$update['atas_nama'] = $this->input->post('atas_nama');
-		$update['pin'] = $this->input->post('pin');
+		$update['pin'] = Null;
 		$update['id_upline'] = $this->input->post('id_upline');
 		$update['posisi'] = $this->input->post('posisi');
 		$update['level'] = $this->input->post('level');
