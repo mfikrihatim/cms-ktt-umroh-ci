@@ -119,7 +119,29 @@
                             <label>Kota</label>
                             <input type="text" class="form-control" name="kota" placeholder="Masukan Kota" value="<?php echo $detail['kota']; ?>">
                         </div>
-
+                        <div class="form-group">
+                            <label>Flag Member</label><br><br>
+                            <?php
+                            if($detail['flag_member'] == '["1"]'){
+                                
+                            ?>
+                            <input type="checkbox" name="flag_member[]" value="1" checked> Member <br><br>
+                            <input type="checkbox" name="flag_member[]" value="2"> Customer / Jamaah
+                            <?php } else if($detail['flag_member'] == '["2"]'){ 
+                                
+                            ?>                            
+                            <input type="checkbox" name="flag_member[]" value="1"> Member <br><br>
+                            <input type="checkbox" name="flag_member[]" value="2" checked> Customer / Jamaah
+                            <?php }else  if($detail['flag_member'] == '["1","2"]'){ 
+                                ?>
+                                <input type="checkbox" name="flag_member[]" value="1" checked> Member <br><br>
+                            <input type="checkbox" name="flag_member[]" value="2" checked> Customer / Jamaah
+                            <?php }else { ?>
+                                <input type="checkbox" name="flag_member[]" value="1"> Member <br><br>
+                            <input type="checkbox" name="flag_member[]" value="2" > Customer / Jamaah
+                            
+                                <?php }?>
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleInputFile">Foto</label>
@@ -243,7 +265,8 @@
                             <label>ID Referensi</label>
                             <input type="number" class="form-control" name="id_referensi" value="<?php echo $detail['id_referensi']; ?>">
                         </div>
-                    </div>
+                      
+                   </div>
 
                     <div class="tab-pane" id="tab_5">
                         <!-- Data Bank -->
