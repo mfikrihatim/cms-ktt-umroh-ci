@@ -1,10 +1,4 @@
-<?php
-if ($this->session->flashdata('update')) {
-    echo '<div class="alert alert-danger"><p class="text-center align-middle">';
-    echo $this->session->flashdata('update');
-    echo '</p></div>';
-}
-?>
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -72,6 +66,7 @@ if ($this->session->flashdata('update')) {
                             <th>Nama Referensi</th>
                             <th>No Hp Referensi</th>
                             <th>ID Referensi</th>
+                            <th>Flag Member</th>
                             <th>Created By</th>
                             <th>Created Date</th>
                             <th>Update by</th>
@@ -128,6 +123,7 @@ if ($this->session->flashdata('update')) {
                                     <td><?php echo $ReadDS->nama_referensi; ?></td>
                                     <td><?php echo $ReadDS->nohp_referensi; ?></td>
                                     <td><?php echo $ReadDS->id_referensi; ?></td>
+                                    <td><?php echo $ReadDS->flag_member; ?></td>
                                     <td><?php echo $ReadDS->created_by; ?></td>
                                     <td><?php echo $ReadDS->created_at; ?></td>
                                     <td><?php echo $ReadDS->updated_by; ?></td>

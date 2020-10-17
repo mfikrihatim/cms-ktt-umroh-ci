@@ -1,6 +1,6 @@
 <?php
   if($this->session->flashdata('message')){
-    echo '<div class="alert alert-warning"><p class="text-center align-middle">';
+    echo '<div class="alert alert-danger"><p class="text-center align-middle">';
     echo $this->session->flashdata('message');
     echo '</p></div>';
   }elseif($this->session->flashdata('update')){
@@ -127,7 +127,22 @@
                             <label>Kota</label>
                             <input type="text" class="form-control" name="kota" placeholder="Masukan Kota">
                         </div>
-
+                        <div class="form-group">
+					
+					<label>Pilih Flag Member</label>		
+				<div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="flag_member[]"  value="1">
+					 Member 
+                    </label><br><br>
+                    <label>
+                      <input type="checkbox" name="flag_member[]"  value="2">
+					 Customer
+                    </label>
+                  </div>
+            </div>
+				</div>
                         <div class="form-group">
                             <label for="exampleInputFile">Tambah Foto</label>
                             <input type="file" name="userfile" />

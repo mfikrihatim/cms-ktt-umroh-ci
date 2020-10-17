@@ -342,6 +342,8 @@ class Welcome extends CI_Controller
 			$data['detail']['updated_at'] = $tampil->updated_at;
 			$data['detail']['deleted_by'] = $tampil->deleted_by;
 			$data['detail']['deleted_at'] = $tampil->deleted_at;
+			$arrayflag_member = json_decode($tampil->flag_member, TRUE);
+			$data['detail']['flag_member'] = $tampil->flag_member;
 			$data['content'] = 'VFormUpdateMember';
 		} else {
 			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
@@ -368,8 +370,11 @@ class Welcome extends CI_Controller
 
 	public function AddDataMember()
 	{
+		
 		$data['nama'] = $this->session->userdata('nama');
-
+		$flag_member = $this->input->post("flag_member");
+		if($flag_member == null)
+		$flag_member =  [];
 
 		$add['id_voucher'] = $this->input->post('id_voucher');
 		$add['nama'] = $this->input->post('nama');
@@ -420,7 +425,7 @@ class Welcome extends CI_Controller
 		$add['nama_referensi'] = $this->input->post('nama_referensi');
 		$add['nohp_referensi'] = $this->input->post('nohp_referensi');
 		$add['id_referensi'] = $this->input->post('id_referensi');
-
+		$add['flag_member'] = json_encode($flag_member);
 
 
 		$config['upload_path'] = './upload/Member';
@@ -451,8 +456,12 @@ class Welcome extends CI_Controller
 	public function UpdateDataMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
-
-
+		$flag_member = $this->input->post("flag_member");
+		if($flag_member == null|| $flag_member == ""){
+			$flag_member = "[]";
+		}else{
+			$flag_member = json_encode($flag_member);
+		}
 		$id = $this->input->post('id');
 
 		$update['id_voucher'] = $this->input->post('id_voucher');
@@ -500,6 +509,8 @@ class Welcome extends CI_Controller
 		$update['nama_referensi'] = $this->input->post('nama_referensi');
 		$update['nohp_referensi'] = $this->input->post('nohp_referensi');
 		$update['id_referensi'] = $this->input->post('id_referensi');
+		$update['flag_member'] = $flag_member;
+
 		$config['upload_path'] = './upload/Member';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -512,16 +523,10 @@ class Welcome extends CI_Controller
 			$data = array('upload_data' => $this->upload->data());
 			$update['foto'] = implode($this->upload->data());
 		}
-		$sql = $this->db->query("SELECT username FROM tb_member where username = '$username'");
-		$cek_username = $sql->num_rows();
-
-		if ($cek_username > 0) {
-			$this->session->set_flashdata('update', 'USERNAME GAGAL DI UPDATE <br>USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
-			redirect(site_url('Welcome/DataMember'));
-		} else {
+	
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
 		redirect(site_url('Welcome/DataMember'));
-		}
+		
 	}
 	public function DeleteDataMember()
 	{
