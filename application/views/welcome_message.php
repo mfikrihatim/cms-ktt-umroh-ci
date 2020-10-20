@@ -191,6 +191,11 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('Welcome/DataHistoryTransferVoucher'); ?>">
+                <i class="fa fa-user"> <span>Data History Transfer Voucher</i></span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo site_url('Welcome/Logout'); ?>">
                 <i class="fa  fa-arrow-left"> <span>Logout</i></span>
               </a>
