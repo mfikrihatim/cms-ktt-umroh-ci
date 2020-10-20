@@ -794,6 +794,7 @@ class Welcome extends CI_Controller
 
 		$this->load->view('welcome_message', $data);
 	}
+
 	public function VFormAddMasterKomisi()
 	{
 		$data['nama'] = $this->session->userdata('nama');
@@ -1460,6 +1461,87 @@ class Welcome extends CI_Controller
 		$this->MSudi->DeleteData('tb_pembelian_voucher', 'id', $id);
 		redirect(site_url('Welcome/DataPembelianVoucher'));
 	}
+
+	public function DataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tb_history_transfer_voucher', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['id_member'] = $tampil->id_member;
+			$data['detail']['id_voucher'] = $tampil->id_voucher;
+			$data['detail']['id_penerima'] = $tampil->id_penerima;
+			$data['detail']['tgl_insert'] = $tampil->tgl_insert;
+			// $data['detail']['created_by'] = $tampil->created_by;
+			// $data['detail']['created_at'] = $tampil->created_at;
+			// $data['detail']['updated_by'] = $tampil->updated_by;
+			// $data['detail']['updated_at'] = $tampil->updated_at;
+			// $data['detail']['deleted_by'] = $tampil->deleted_by;
+			// $data['detail']['deleted_at'] = $tampil->deleted_at;
+			$data['content'] = 'VFormUpdateHistoryTransferVoucher';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataHistoryTransferVoucher'] = $this->MSudi->GetData('tb_history_transfer_voucher');
+			$data['content'] = 'VHistoryTransferVoucher';
+		}
+
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function VFormAddHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddHistoryTransferVoucher';
+		$data['id_voucher'] = $this->MSudi->GetData('tb_voucher');
+		// $data['id_penerima'] = $this->MSudi->GetDataWhere('tb_member', 'is_active', 1)->result();
+
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function AddDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+		$add['id_member'] = $data['id'];
+		$add['id_voucher'] = $this->input->post('id_voucher');
+		$add['id_penerima'] = $this->input->post('id_penerima');
+		$add['tgl_insert'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->AddData('tb_history_transfer_voucher', $add);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
+	public function UpdateDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$id = $this->input->post('id');
+		// $update['id_member'] = $data['id'];
+		$update['id_voucher'] = $this->input->post('id_voucher');
+		$update['id_penerima'] = $this->input->post('id_penerima');
+		// $update['tgl_insert'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->UpdateData('tb_history_transfer_voucher', 'id', $id, $update);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
+
+	public function DeleteDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$id = $this->uri->segment('3');
+		$this->MSudi->DeleteData('tb_history_transfer_voucher', 'id', $id);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
 
 	public function Logout()
 	{
