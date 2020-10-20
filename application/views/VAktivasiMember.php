@@ -2,20 +2,16 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title">Data Member</h2>
+                <h2 class="box-title">Aktivasi Member</h2>
                 <div class="box-header">
-                    <h3 class="box-title"><a href="<?php echo site_url('Welcome/VFormAddMember'); ?>">
-                            <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i></div>
-                        </a></h3>
+
 
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
                             <div class="input-group-btn">
-                                <h3 class="box-title"><a href="<?php echo site_url('Welcome/DataAktivasiMember'); ?>">
-                                        <div class="col-md-3 col-sm-4">Aktivasi Member</i></div>
-                                    </a></h3>
+
                             </div>
                         </div>
                     </div>
@@ -134,8 +130,7 @@
                                     <td><?php echo $ReadDS->is_active; ?></td>
 
                                     <td>
-                                        <a href="<?php echo site_url('Welcome/DataMember/' . $ReadDS->id . '/view') ?>"><i class="fa fa-edit"></i></a>
-                                        <a href="<?php echo site_url('Welcome/DeleteDataMember/' . $ReadDS->id) ?>"><i class="fa fa-fw fa-trash"></i></a>
+                                        <a href="<?php echo site_url('Welcome/AktivasiMember/' . $ReadDS->id) ?>"><button type="button" class="btn bg-olive margin">Aktivasi Member<div class="ripple-container"></div></button></a>
                                     </td>
                                 </tr>
                         <?php
