@@ -380,6 +380,7 @@ class Welcome extends CI_Controller
 
 		$id = $this->uri->segment('3');
 		$update['is_active'] = 1;
+		$update['actived_by'] = $data['nama'];
 
 
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
