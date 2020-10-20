@@ -205,6 +205,11 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('Welcome/DataPembelianVoucher'); ?>">
+                <i class="fa  fa-arrow-left"> <span>Pembelian Voucher</i></span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo site_url('Welcome/Logout'); ?>">
                 <i class="fa  fa-arrow-left"> <span>Logout</i></span>
               </a>
