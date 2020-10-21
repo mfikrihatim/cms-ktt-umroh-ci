@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CMS KTT UMROH</title>
+  <title>Komunitas Tour & Travel Asia</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -47,7 +47,9 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">S<b>P</b>P</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>CMS KTT UMROH</b></span>
+        <span class="logo-lg">
+          <h4>Komunitas Tour & </br>Travel Asia</h4>
+        </span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -151,66 +153,75 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
           <?php
-     if($_SESSION['level'] == 'admin'){ // Jika role-nya admin
-      ?>
-          <li>
-            
-            <a href="<?php echo site_url('Welcome/DataAdmin'); ?>">
-              <i class="fa fa-user"> <span>Data Admin</i></span>
-            </a>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataMember'); ?>">
-              <i class="fa fa-user"> <span>Data Member</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataVoucher'); ?>">
-              <i class="fa fa-user"> <span>Data Voucher</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataLevelMember'); ?>">
-              <i class="fa fa-user"> <span>Data Level Member</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataKategoriKomisi'); ?>">
-              <i class="fa fa-user"> <span>Data Kategori Komisi</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataMasterKomisi'); ?>">
-              <i class="fa fa-user"> <span>Data Master Komisi</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/DataCustomer'); ?>">
-              <i class="fa fa-user"> <span>Data Customer</i></span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo site_url('Welcome/Logout'); ?>">
-              <i class="fa  fa-arrow-left"> <span>Logout</i></span>
-            </a>
-          </li>
-      
+          if ($_SESSION['level'] == 'admin') { // Jika role-nya admin
+          ?>
+            <li>
+
+              <a href="<?php echo site_url('Welcome/DataAdmin'); ?>">
+                <i class="fa fa-user"> <span>Data Admin</i></span>
+              </a>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataMember'); ?>">
+                <i class="fa fa-user"> <span>Data Member</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataVoucher'); ?>">
+                <i class="fa fa-user"> <span>Data Voucher</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataLevelMember'); ?>">
+                <i class="fa fa-user"> <span>Data Level Member</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataKategoriKomisi'); ?>">
+                <i class="fa fa-user"> <span>Data Kategori Komisi</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataMasterKomisi'); ?>">
+                <i class="fa fa-user"> <span>Data Master Komisi</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataCustomer'); ?>">
+                <i class="fa fa-user"> <span>Data Customer</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataHistoryTransferVoucher'); ?>">
+                <i class="fa fa-user"> <span>Data History Transfer Voucher</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/Logout'); ?>">
+                <i class="fa  fa-arrow-left"> <span>Logout</i></span>
+              </a>
+            </li>
+
           <?php
-}
-       elseif($_SESSION['level'] == 'member'){
-      ?>
-      <li>
-            <a href="<?php echo site_url('Welcome/DataPendaftaranMember'); ?>">
-              <i class="fa  fa-arrow-left"> <span>Pendaftaran Member</i></span>
-            </a>
-          </li>
-       <li>
-            <a href="<?php echo site_url('Welcome/Logout'); ?>">
-              <i class="fa  fa-arrow-left"> <span>Logout</i></span>
-            </a>
-          </li>
+          } elseif ($_SESSION['level'] == 'member') {
+          ?>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataPendaftaranMember'); ?>">
+                <i class="fa  fa-arrow-left"> <span>Pendaftaran Member</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/DataPembelianVoucher'); ?>">
+                <i class="fa  fa-arrow-left"> <span>Pembelian Voucher</i></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('Welcome/Logout'); ?>">
+                <i class="fa  fa-arrow-left"> <span>Logout</i></span>
+              </a>
+            </li>
           <?php
-       }
-      ?>
+          }
+          ?>
           <!-- <li class="active treeview menu-open">
             <a href="#">
               <i class="fa  fa-database"></i> <span>Master Data</span>
@@ -427,8 +438,8 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h2>
-            SISTEM CMS UMROH
-          <small>Server</small>
+          Komunitas Tour & Travel Asia
+
         </h2>
         <ol class="breadcrumb">
           <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

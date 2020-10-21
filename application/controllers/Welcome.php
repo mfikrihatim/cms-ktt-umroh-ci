@@ -342,6 +342,8 @@ class Welcome extends CI_Controller
 			$data['detail']['updated_at'] = $tampil->updated_at;
 			$data['detail']['deleted_by'] = $tampil->deleted_by;
 			$data['detail']['deleted_at'] = $tampil->deleted_at;
+			$arrayflag_member = json_decode($tampil->flag_member, TRUE);
+			$data['detail']['flag_member'] = $tampil->flag_member;
 			$data['content'] = 'VFormUpdateMember';
 		} else {
 			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
@@ -354,6 +356,36 @@ class Welcome extends CI_Controller
 		$this->load->view('welcome_message', $data);
 	}
 
+
+
+	public function DataAktivasiMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tb_member', 'id', $id)->row();
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataMember'] = $this->MSudi->GetDataWhere1('tb_member', 'is_active', 0, 'id', 'asc')->result();
+			$data['content'] = 'VAktivasiMember';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+	public function AktivasiMember()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+		$id = $this->uri->segment('3');
+		$update['is_active'] = 1;
+		$update['actived_by'] = $data['nama'];
+
+
+		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
+		redirect(site_url('Welcome/DataMember'));
+	}
 
 	public function VFormAddMember()
 	{
@@ -368,8 +400,11 @@ class Welcome extends CI_Controller
 
 	public function AddDataMember()
 	{
-		$data['nama'] = $this->session->userdata('nama');
 
+		$data['nama'] = $this->session->userdata('nama');
+		$flag_member = $this->input->post("flag_member");
+		if ($flag_member == null)
+			$flag_member =  [];
 
 		$add['id_voucher'] = $this->input->post('id_voucher');
 		$add['nama'] = $this->input->post('nama');
@@ -398,7 +433,7 @@ class Welcome extends CI_Controller
 		$add['updated_at'] = Null;
 		$add['deleted_by'] = Null;
 		$add['deleted_at'] = Null;
-		$add['is_active'] = 1;
+		$add['is_active'] = 0;
 		$add['kota'] = $this->input->post('kota');
 		$add['kodepos'] = $this->input->post('kodepos');
 		$add['pekerjaan'] = $this->input->post('pekerjaan');
@@ -420,7 +455,7 @@ class Welcome extends CI_Controller
 		$add['nama_referensi'] = $this->input->post('nama_referensi');
 		$add['nohp_referensi'] = $this->input->post('nohp_referensi');
 		$add['id_referensi'] = $this->input->post('id_referensi');
-
+		$add['flag_member'] = json_encode($flag_member);
 
 
 		$config['upload_path'] = './upload/Member';
@@ -451,8 +486,12 @@ class Welcome extends CI_Controller
 	public function UpdateDataMember()
 	{
 		$data['nama'] = $this->session->userdata('nama');
-
-
+		$flag_member = $this->input->post("flag_member");
+		if ($flag_member == null || $flag_member == "") {
+			$flag_member = "[]";
+		} else {
+			$flag_member = json_encode($flag_member);
+		}
 		$id = $this->input->post('id');
 
 		$update['id_voucher'] = $this->input->post('id_voucher');
@@ -478,7 +517,7 @@ class Welcome extends CI_Controller
 		$update['id_member'] = $this->input->post('id_member');
 		$update['updated_by'] = $data['nama'];
 		$update['updated_at'] = date("Y-m-d H:i:s");
-		$update['is_active'] = 1;
+		$update['is_active'] = 0;
 		$update['kota'] = $this->input->post('kota');
 		$update['kodepos'] = $this->input->post('kodepos');
 		$update['pekerjaan'] = $this->input->post('pekerjaan');
@@ -500,6 +539,8 @@ class Welcome extends CI_Controller
 		$update['nama_referensi'] = $this->input->post('nama_referensi');
 		$update['nohp_referensi'] = $this->input->post('nohp_referensi');
 		$update['id_referensi'] = $this->input->post('id_referensi');
+		$update['flag_member'] = $flag_member;
+
 		$config['upload_path'] = './upload/Member';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -512,16 +553,9 @@ class Welcome extends CI_Controller
 			$data = array('upload_data' => $this->upload->data());
 			$update['foto'] = implode($this->upload->data());
 		}
-		$sql = $this->db->query("SELECT username FROM tb_member where username = '$username'");
-		$cek_username = $sql->num_rows();
 
-		if ($cek_username > 0) {
-			$this->session->set_flashdata('update', 'USERNAME GAGAL DI UPDATE <br>USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
-			redirect(site_url('Welcome/DataMember'));
-		} else {
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
 		redirect(site_url('Welcome/DataMember'));
-		}
 	}
 	public function DeleteDataMember()
 	{
@@ -760,6 +794,7 @@ class Welcome extends CI_Controller
 
 		$this->load->view('welcome_message', $data);
 	}
+
 	public function VFormAddMasterKomisi()
 	{
 		$data['nama'] = $this->session->userdata('nama');
@@ -1144,7 +1179,7 @@ class Welcome extends CI_Controller
 		} else {
 			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
 			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
-			$data['DataPendaftaranMember'] = $this->MSudi->GetDataWhere2('tb_member', 'is_active', 1 ,'id_member',$data['id'] ,'id', 'asc')->result();
+			$data['DataPendaftaranMember'] = $this->MSudi->GetDataWhere2('tb_member', 'is_active', 1, 'id_member', $data['id'], 'id', 'asc')->result();
 			$data['content'] = 'VPendaftaranMember';
 		}
 
@@ -1184,7 +1219,7 @@ class Welcome extends CI_Controller
 		$add['nama_bank'] = $this->input->post('nama_bank');
 		$add['nomor_rekening'] = $this->input->post('nomor_rekening');
 		$add['atas_nama'] = $this->input->post('atas_nama');
-		$add['pin'] = $this->input->post('pin');
+		$add['pin'] = Null;
 		$add['id_upline'] = $this->input->post('id_upline');
 		$add['posisi'] = $this->input->post('posisi');
 		$add['level'] = $this->input->post('level');
@@ -1197,7 +1232,7 @@ class Welcome extends CI_Controller
 		$add['updated_at'] = Null;
 		$add['deleted_by'] = Null;
 		$add['deleted_at'] = Null;
-		$add['is_active'] = 1;
+		$add['is_active'] = 0;
 		$add['kota'] = $this->input->post('kota');
 		$add['kodepos'] = $this->input->post('kodepos');
 		$add['pekerjaan'] = $this->input->post('pekerjaan');
@@ -1271,7 +1306,7 @@ class Welcome extends CI_Controller
 		$update['nama_bank'] = $this->input->post('nama_bank');
 		$update['nomor_rekening'] = $this->input->post('nomor_rekening');
 		$update['atas_nama'] = $this->input->post('atas_nama');
-		$update['pin'] = $this->input->post('pin');
+		$update['pin'] = null;
 		$update['id_upline'] = $this->input->post('id_upline');
 		$update['posisi'] = $this->input->post('posisi');
 		$update['level'] = $this->input->post('level');
@@ -1280,7 +1315,7 @@ class Welcome extends CI_Controller
 		$update['id_member'] = $data['id'];
 		$update['updated_by'] = $data['nama'];
 		$update['updated_at'] = date("Y-m-d H:i:s");
-		$update['is_active'] = 1;
+		$update['is_active'] = 0;
 		$update['kota'] = $this->input->post('kota');
 		$update['kodepos'] = $this->input->post('kodepos');
 		$update['pekerjaan'] = $this->input->post('pekerjaan');
@@ -1321,8 +1356,8 @@ class Welcome extends CI_Controller
 			$this->session->set_flashdata('update', 'USERNAME GAGAL DI UPDATE <br>USERNAME Sudah digunakan sebelumnya <br> Silahkan Masukan username yang baru');
 			redirect(site_url('Welcome/DataPendaftaranMember'));
 		} else {
-		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
-		redirect(site_url('Welcome/DataPendaftaranMember'));
+			$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
+			redirect(site_url('Welcome/DataPendaftaranMember'));
 		}
 	}
 	public function DeleteDataPendaftaranMember()
@@ -1338,6 +1373,175 @@ class Welcome extends CI_Controller
 		$this->MSudi->UpdateData('tb_member', 'id', $id, $update);
 		redirect(site_url('Welcome/DataPendaftaranMember'));
 	}
+
+
+	public function DataPembelianVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tb_pembelian_voucher', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['id_member'] = $tampil->id_member;
+			$data['detail']['nama_paket'] = $tampil->nama_paket;
+			$data['detail']['jumlah_voucher'] = $tampil->jumlah_voucher;
+			$data['detail']['harga'] = $tampil->harga;
+			$data['detail']['status'] = $tampil->status;
+			$data['detail']['tgl_insert'] = $tampil->tgl_insert;
+			// $data['detail']['created_by'] = $tampil->created_by;
+			// $data['detail']['created_at'] = $tampil->created_at;
+			// $data['detail']['updated_by'] = $tampil->updated_by;
+			// $data['detail']['updated_at'] = $tampil->updated_at;
+			// $data['detail']['deleted_by'] = $tampil->deleted_by;
+			// $data['detail']['deleted_at'] = $tampil->deleted_at;
+			$data['content'] = 'VFormUpdatePembelianVoucher';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataPembelianVoucher'] = $this->MSudi->GetData('tb_pembelian_voucher');
+			$data['content'] = 'VPembelianVoucher';
+		}
+
+
+		$this->load->view('welcome_message', $data);
+	}
+
+
+	public function VFormAddPembelianVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddPembelianVoucher';
+		$data['voucher'] = $this->MSudi->GetData('tb_voucher');
+
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function AddDataPembelianVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$add['id_member'] = $data['id'];
+		$add['nama_paket'] = $this->input->post('nama_paket');
+		$add['jumlah_voucher'] = $this->input->post('jumlah_voucher');
+		$add['harga'] = $this->input->post('harga');
+		$add['status'] = $this->input->post('status');
+		$add['tgl_insert'] = date("Y-m-d H:i:s");
+		$this->MSudi->AddData('tb_pembelian_voucher', $add);
+		redirect(site_url('Welcome/DataPembelianVoucher'));
+	}
+
+	public function UpdateDataPembelianVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$id = $this->input->post('id');
+
+		$update['id'] = $this->input->post('id');
+		$update['nama_paket'] = $this->input->post('nama_paket');
+		$update['jumlah_voucher'] = $this->input->post('jumlah_voucher');
+		$update['harga'] = $this->input->post('harga');
+		$update['status'] = $this->input->post('status');
+		$update['tgl_insert'] = date("Y-m-d H:i:s");
+		$this->MSudi->UpdateData('tb_pembelian_voucher', 'id', $id, $update);
+		redirect(site_url('Welcome/DataPembelianVoucher'));
+	}
+
+
+	public function DeleteDataPembelianVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$id = $this->uri->segment('3');
+		$this->MSudi->DeleteData('tb_pembelian_voucher', 'id', $id);
+		redirect(site_url('Welcome/DataPembelianVoucher'));
+	}
+
+	public function DataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+		if ($this->uri->segment(4) == 'view') {
+			$id = $this->uri->segment(3);
+			$tampil = $this->MSudi->GetDataWhere('tb_history_transfer_voucher', 'id', $id)->row();
+			$data['detail']['id'] = $tampil->id;
+			$data['detail']['id_member'] = $tampil->id_member;
+			$data['detail']['id_voucher'] = $tampil->id_voucher;
+			$data['detail']['id_penerima'] = $tampil->id_penerima;
+			$data['detail']['tgl_insert'] = $tampil->tgl_insert;
+			// $data['detail']['created_by'] = $tampil->created_by;
+			// $data['detail']['created_at'] = $tampil->created_at;
+			// $data['detail']['updated_by'] = $tampil->updated_by;
+			// $data['detail']['updated_at'] = $tampil->updated_at;
+			// $data['detail']['deleted_by'] = $tampil->deleted_by;
+			// $data['detail']['deleted_at'] = $tampil->deleted_at;
+			$data['content'] = 'VFormUpdateHistoryTransferVoucher';
+		} else {
+			// $join="tbl_staff.kd_staff = tbl_users.kd_staff AND tbl_pegawai.kd_pegawai = tbl_staff.kd_pegawai";
+			// $data['DataUser']=$this->MSudi->GetData2Join('tbl_users','tbl_staff','tbl_pegawai', $join)->result();
+			$data['DataHistoryTransferVoucher'] = $this->MSudi->GetData('tb_history_transfer_voucher');
+			$data['content'] = 'VHistoryTransferVoucher';
+		}
+
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function VFormAddHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+
+
+		$data['content'] = 'VFormAddHistoryTransferVoucher';
+		$data['id_voucher'] = $this->MSudi->GetData('tb_voucher');
+		// $data['id_penerima'] = $this->MSudi->GetDataWhere('tb_member', 'is_active', 1)->result();
+
+		$this->load->view('welcome_message', $data);
+	}
+
+	public function AddDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+		$add['id_member'] = $data['id'];
+		$add['id_voucher'] = $this->input->post('id_voucher');
+		$add['id_penerima'] = $this->input->post('id_penerima');
+		$add['tgl_insert'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->AddData('tb_history_transfer_voucher', $add);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
+	public function UpdateDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$data['id'] = $this->session->userdata('id');
+
+
+		$id = $this->input->post('id');
+		// $update['id_member'] = $data['id'];
+		$update['id_voucher'] = $this->input->post('id_voucher');
+		$update['id_penerima'] = $this->input->post('id_penerima');
+		// $update['tgl_insert'] = date("Y-m-d H:i:s");
+
+		$this->MSudi->UpdateData('tb_history_transfer_voucher', 'id', $id, $update);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
+
+	public function DeleteDataHistoryTransferVoucher()
+	{
+		$data['nama'] = $this->session->userdata('nama');
+		$id = $this->uri->segment('3');
+		$this->MSudi->DeleteData('tb_history_transfer_voucher', 'id', $id);
+		redirect(site_url('Welcome/DataHistoryTransferVoucher'));
+	}
+
 
 	public function Logout()
 	{
